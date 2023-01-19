@@ -51,12 +51,16 @@ class Graph :
         while len(level) != 0 :
 
             next_level = list()
-            for user in next_level:
+            for user in level:
+
+                for linked in dict(user.LinkedPeople).keys():
+
+                    if list(known).index(user) == -1 :
+                        list(known).append(user)
+                        BFS_tree.addNode(user , linked)
+                        next_level.append(linked)
 
 
+            level = next_level
 
-
-
-
-
-
+        return BFS_tree
