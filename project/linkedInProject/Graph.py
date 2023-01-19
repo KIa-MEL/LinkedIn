@@ -1,3 +1,4 @@
+from Tree import Tree
 from User import User
 
 
@@ -40,4 +41,22 @@ class Graph :
 
     @staticmethod
     def BFS (startingPoint , known):
-        return None
+
+        BFS_tree = Tree()
+        level = list()
+
+        list(known).append(startingPoint)
+        level.append(startingPoint)
+
+        while len(level) != 0 :
+
+            next_level = list()
+            for user in next_level:
+
+
+
+
+
+
+
+
