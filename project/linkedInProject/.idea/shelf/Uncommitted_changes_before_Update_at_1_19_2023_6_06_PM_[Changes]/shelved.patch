@@ -1,0 +1,76 @@
+Index: Graph.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Graph.py b/Graph.py
+--- a/Graph.py	(revision d269e1c258f034154940e672a7899c58aae8fc9f)
++++ b/Graph.py	(date 1674138502790)
+@@ -1,0 +1,13 @@
++
++class Graph :
++
++    unlikedInGraph = None
++    def __init__(self):
++        self.edges = list()
++        self.vertices = list()
++
++        if Graph.unlikedInGraph is None:
++            Graph.unlikedInGraph = self
++
++
++
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10 (linkedInProject)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d269e1c258f034154940e672a7899c58aae8fc9f)
++++ b/.idea/misc.xml	(date 1674136387673)
+@@ -1,4 +1,4 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (linkedInProject)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"InspectionProjectProfileManager\">\r\n  <settings>\r\n    <option name=\"USE_PROJECT_PROFILE\" value=\"false\" />\r\n    <version value=\"1.0\" />\r\n  </settings>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+--- a/.idea/inspectionProfiles/profiles_settings.xml	(revision d269e1c258f034154940e672a7899c58aae8fc9f)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1674138496014)
+@@ -1,5 +1,6 @@
+ <component name="InspectionProjectProfileManager">
+   <settings>
++    <option name="PROJECT_PROFILE" value="Default" />
+     <option name="USE_PROJECT_PROFILE" value="false" />
+     <version value="1.0" />
+   </settings>
+Index: .idea/linkedInProject.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/linkedInProject.iml b/.idea/linkedInProject.iml
+--- a/.idea/linkedInProject.iml	(revision d269e1c258f034154940e672a7899c58aae8fc9f)
++++ b/.idea/linkedInProject.iml	(date 1674136387633)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
