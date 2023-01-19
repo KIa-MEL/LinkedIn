@@ -21,7 +21,7 @@ class Tree :
 
     def search(self , data , currentNode):
 
-        if data == currentNode :
+        if data == currentNode.data :
             return currentNode
 
         node = None
@@ -31,6 +31,6 @@ class Tree :
                 return node
 
 
-            self.search(data , child)
+            node=self.search(data , child)
 
         return node#=========================================should throws exception
