@@ -3,7 +3,9 @@ from User import User
 
 class Graph :
 
+    #singleTon graph
     unlinkedInGraph = None
+
 
     def __init__(self):
         self.edges = list()
@@ -12,6 +14,7 @@ class Graph :
         if Graph.unlinkedInGraph is None :
             Graph.unlinkedInGraph = self
 
+    @staticmethod
     def findUserId(username):
 
         for user in Graph(Graph.unlinkedInGraph).vertices :
@@ -21,6 +24,7 @@ class Graph :
 
         return None
 
+    @staticmethod
     def findByName(name):
 
         users = list()
@@ -34,5 +38,6 @@ class Graph :
 
         return users
 
+    @staticmethod
     def BFS (startingPoint , known):
         return None
