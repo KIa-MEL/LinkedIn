@@ -5,6 +5,8 @@ import demjson3
 
 from types import SimpleNamespace as Namespace
 
+from Edge import Edge
+
 
 class User :
     _main_users_file_path = '../Files/users2.json'
@@ -19,15 +21,18 @@ class User :
     workplace = str
     specialties = str
     connectionId = list
-    def __int__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
-        self.username = username
-        self.password = password
-        self.name = name
-        self.dateOfBirth = dateOfBirth
-        self.universityLocation = universityLocation
-        self.field = field
-        self.workplace = workplace
-        self.specialties = specialties
+    LinkedPeople = dict()
+
+    # def __init__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
+    #     self.username = username
+    #     self.password = password
+    #     self.name = name
+    #     self.dateOfBirth = dateOfBirth
+    #     self.universityLocation = universityLocation
+    #     self.field = field
+    #     self.workplace = workplace
+    #     self.specialties = specialties
+
     def setData1(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
         self.username = username
         self.password = password
@@ -94,7 +99,9 @@ class User :
                 return True
         return False
 
-#print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
+    def LinkUser(self , u):
+        e = Edge(self, u)
+        self.LinkedPeople[u] = e
+        User(u).LinkedPeople[self] = e
 
-x = User.getUsers(User._main_users_file_path)
-print(x)
+#print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
