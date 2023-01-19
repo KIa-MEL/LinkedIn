@@ -14,6 +14,10 @@ class Tree :
            self.root = new_node
 
         parent = self.search(parentData , self.root)
+
+        if parent is None :
+            raise Exception ("inner exception : parent node cold not be found")
+
         new_node = TreeNode (data)
         TreeNode(parent).children.append(new_node)
         new_node.parent = parent
@@ -33,4 +37,4 @@ class Tree :
 
             node=self.search(data , child)
 
-        return node#=========================================should throws exception
+        return node
