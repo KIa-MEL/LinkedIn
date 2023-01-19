@@ -9,15 +9,16 @@ from types import SimpleNamespace as Namespace
 class User :
     _main_users_file_path = '../Files/users2.json'
     _local_users_file_path = '../Files/users.json'
-    id = str()
-    username = str()
-    password = str()
-    name = str()
-    dateOfBirth = str()
-    universityLocation = str()
-    field = str()
-    workplace = str()
-    specialties = str()
+    id = str
+    username = str
+    password = str
+    name = str
+    dateOfBirth = str
+    universityLocation = str
+    field = str
+    workplace = str
+    specialties = str
+    connectionId = list
     def __int__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
         self.username = username
         self.password = password
@@ -36,13 +37,14 @@ class User :
         self.field = field
         self.workplace = workplace
         self.specialties = specialties
-    def setData(self , name, dateOfBirth, universityLocation, field, workplace, specialties):
+    def setData(self , name, dateOfBirth, universityLocation, field, workplace, specialties , connectionId):
         self.name = name
         self.dateOfBirth = dateOfBirth
         self.universityLocation = universityLocation
         self.field = field
         self.workplace = workplace
         self.specialties = specialties
+        self.connectionId = connectionId
 
     def getUsers(path): # static function
         f = open(path)
@@ -51,7 +53,7 @@ class User :
 
         for item in data:
             u = User()
-            u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['specialties'])
+            u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['specialties'] , item['connectionId'])
             users.append(u)
         return users
 
@@ -92,4 +94,7 @@ class User :
                 return True
         return False
 
-print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
+#print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
+
+x = User.getUsers(User._main_users_file_path)
+print(x)
