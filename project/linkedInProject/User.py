@@ -1,12 +1,6 @@
 import json
 import os.path
-from collections import namedtuple
-import demjson3
-
-from types import SimpleNamespace as Namespace
-
 from Edge import Edge
-
 
 class User :
     _main_users_file_path = '../Files/users2.json'
@@ -105,3 +99,4 @@ class User :
         User(u).LinkedPeople[self] = e
 
 #print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
+

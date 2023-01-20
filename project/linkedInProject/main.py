@@ -1,4 +1,3 @@
-from Edge import Edge
 from User import User
 
 user = User()
@@ -19,6 +18,9 @@ def signup(username, password, name, dateOfBirth, universityLocation, field, wor
     u = User()
     u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace, specialties)
     u.saveFile(User._local_users_file_path)
+
+x = [1,3,7,8,9,5]
+print(x.index(5))
 
 
 print('Welcome to Unlinked Out')
