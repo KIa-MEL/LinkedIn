@@ -42,13 +42,17 @@ class Graph :
     @staticmethod
     def BFS (startingPoint , known):
 
-        BFS_tree = Tree()
+        BFS_tree = dict()
         level = list()
 
         list(known).append(startingPoint)
         level.append(startingPoint)
 
+        five_rows = 5
         while len(level) != 0 :
+
+            if five_rows == 0 :
+                break
 
             next_level = list()
             for user in level:
@@ -57,10 +61,17 @@ class Graph :
 
                     if list(known).index(user) == -1 :
                         list(known).append(user)
-                        BFS_tree.addNode(user , linked)
+                        BFS_tree[linked] = five_rows
                         next_level.append(linked)
 
 
             level = next_level
+            five_rows -= 1
 
         return BFS_tree
+
+    @staticmethod
+    def make_edges():
+
+        for user in Graph(Graph.unlinkedInGraph).vertices:
+            break

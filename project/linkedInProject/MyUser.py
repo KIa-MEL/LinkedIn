@@ -6,7 +6,7 @@ import demjson3
 from types import SimpleNamespace as Namespace
 
 
-class MyUser2 :
+class UserClass :
     _main_users_file_path = '../Files/users1.json'
     _local_users_file_path = '../Files/users.json'
     id = str
@@ -21,6 +21,7 @@ class MyUser2 :
     connectionId = list
     email = str
     LinkedPeople = dict()
+
 
     # def __init__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
     #     self.username = username
@@ -58,12 +59,12 @@ class MyUser2 :
         users = list()
 
         for item in data:
-            u = MyUser2()
+            u = UserClass()
             u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['email'] , item['specialties'] , item['connectionId'])
             users.append(u)
         return users
     def toUser(item):
-        u = MyUser2()
+        u = UserClass()
         u.setData(item['name'], item['dateOfBirth'], item['universityLocation'], item['field'], item['workplace'],item['email'], item['specialties'], item['connectionId'])
         return u
     def saveFile(self , path):
@@ -89,7 +90,7 @@ class MyUser2 :
         f.close()
         for item in data:
             if item['username'] == username and item['password'] == password:
-                u = MyUser2()
+                u = UserClass()
                 u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'] , item['email'], item['specialties'])
                 return u
         return None
@@ -100,7 +101,7 @@ class MyUser2 :
         f.close()
         for item in data:
             if item['name'] == name:
-                return MyUser2.toUser(item)
+                return UserClass.toUser(item)
         return None
     def isInFile(name , path):
         f = open(path)
@@ -113,9 +114,10 @@ class MyUser2 :
 
     def LinkUser(self , u):
         import MyEdge
-        e = MyEdge.MyEdge2(self, u)
+        e = MyEdge.EdgeClas(self, u)
         self.LinkedPeople[u] = e
-        MyUser2(u).LinkedPeople[self] = e
+        UserClass(u).LinkedPeople[self] = e
+
     def toString(self):
         print('Name : ' + self.name)
         print('Birthday : ' + self.dateOfBirth)
