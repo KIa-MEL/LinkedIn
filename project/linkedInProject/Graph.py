@@ -4,21 +4,35 @@ from MyEdge import EdgeClass
 class Graph :
 
     #singleTon graph
-    unlinkedOutGraph = None
-
+    _instance = None
+    edges = list()
+    vertices = list()
 
     def __init__(self):
-        self.edges = list()
-        self.vertices = list()
+        # self.edges = list()
+        # self.vertices = list()
+        #
+        # if Graph._instance is None :
+        #     Graph._instance = self
+        raise RuntimeError('Call instance() instead')
 
-        if Graph.unlinkedOutGraph is None :
-            Graph.unlinkedOutGraph = self
+
+    @classmethod
+    def getInstance(cls):
+        if cls._instance is None:
+            #Creating new instance
+            cls._instance = cls.__new__(cls)
+            # Put any initialization here.
+        return cls._instance
+
+
+
 
     @staticmethod
-    def findUserId(username):
+    def findUserById(id):
 
-        for user in Graph(Graph.unlinkedOutGraph).vertices :
-            if user.username == username:
+        for user in Graph.getInstance().vertices :
+            if user.id == id:
                 return user
 
 
@@ -29,7 +43,7 @@ class Graph :
 
         users = list()
 
-        for user in Graph(Graph.unlinkedOutGraph).vertices :
+        for user in Graph(Graph._instance).vertices :
             if user.name == name :
                 users.append(user)
 
@@ -68,44 +82,47 @@ class Graph :
             five_rows -= 1
 
         return BFS_tree
-
-    def setGraph(self):
+    @staticmethod
+    def setGraph():
         users = UserClass.getUsers(UserClass._main_users_file_path)
         users += UserClass.getLocalUsers(UserClass._local_users_file_path)
 
-        self.vertices = users
+        Graph.getInstance().vertices = users
 
 
 
-    @staticmethod
-    def make_edges():
+    def make_edges(self):
 
-        for user in Graph(Graph.unlinkedOutGraph).vertices:
+        for user in self.vertices:
 
-            user = UserClass(user)
+            for opposite_useres in user.connectionId:
 
-            for opposite_useres in UserClass(user).connectionId:
-
-                opposite_user = Graph(Graph.unlinkedOutGraph).findUserId(opposite_useres)
-                opposite_user = UserClass(opposite_user)
+                opposite_user = Graph.getInstance().findUserById(opposite_useres)
 
                 try:
-                    Graph.add_each_edge(user , opposite_user)
-                except Exception : print('')
+                    self.add_each_edge(user , opposite_user)
+                except Exception : print('kjkj')
 
 
-    @staticmethod
-    def add_each_edge(user , opposite_user):
+    def getEdge(self , v = UserClass , u = UserClass):
+        try:
+            if v.LinkedPeople.keys().__contains__(u):
+                return v.LinkedPeople[u]
+        except Exception:
+            return None
 
-        if list(opposite_user.LinkedPeople.keys()).__contains__(user):
+    def add_each_edge(self , user = UserClass , opposite_user = UserClass):
+
+        if self.getEdge(user , opposite_user) is None:
             edge = EdgeClass(user, opposite_user)
 
             # adding connected people
-            opposite_user.LinkedPeople[user] = edge
-            user.LinkedPeople[opposite_user] = edge
+            opposite_user.addLink(user , edge)
+            user.addLink(opposite_user , edge)
+
 
             # adding the new edge
-            Graph(Graph.unlinkedOutGraph).edges.append(edge)
+            self.edges.append(edge)
 
         else:
             raise Exception('you are already connected to this user')

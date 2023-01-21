@@ -54,9 +54,11 @@ while True:
         else:
             user.toString()
     elif inp == '5':
+        q = dict
+        Graph.setGraph()
+        G = Graph.getInstance()
+        G.make_edges()
 
-        g = Graph()
-        g.setGraph()
 
     print('\n###############################################\n')
 
