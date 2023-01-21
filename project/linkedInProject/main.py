@@ -1,24 +1,27 @@
-from MyEdge import MyEdge
-from MyUser import MyUser
+from MyEdge import MyEdge2
+from MyUser import MyUser2
 
-user = MyUser()
+user = MyUser2()
 
 def showMenu():
     print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
     inp = input('>> ')
     return inp
 def login(username , password):
-    if MyUser.findInFile(username , password , MyUser._local_users_file_path) != None:
-        #go to login
-        print()
-    else:
-        print('User not found!')
-        showMenu()
+    try:
+        if MyUser2.findInFile(username , password , MyUser2._local_users_file_path) != None:
+            #go to login
+            print()
+        else:
+            print('User not found!')
+            showMenu()
+    except Exception:
+        print("Something went wrong!")
 
 def signup(username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
-    u = MyUser()
+    u = MyUser2()
     u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace, specialties)
-    u.saveFile(MyUser._local_users_file_path)
+    u.saveFile(MyUser2._local_users_file_path)
 
 
 print('Welcome to Unlinked Out')
