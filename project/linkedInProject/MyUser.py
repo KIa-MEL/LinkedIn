@@ -22,17 +22,6 @@ class UserClass :
     email = str
     LinkedPeople = dict()
 
-
-    # def __init__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
-    #     self.username = username
-    #     self.password = password
-    #     self.name = name
-    #     self.dateOfBirth = dateOfBirth
-    #     self.universityLocation = universityLocation
-    #     self.field = field
-    #     self.workplace = workplace
-    #     self.specialties = specialties
-
     def setData1(self , username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties , connectionId):
         self.username = username
         self.password = password

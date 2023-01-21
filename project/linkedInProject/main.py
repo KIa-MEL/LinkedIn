@@ -53,9 +53,10 @@ while True:
             print('The user ' + name + ' not found')
         else:
             user.toString()
-    # elif inp == '5':
-    #     g = Graph()
-    #     g.setGraph()
+    elif inp == '5':
+
+        g = Graph()
+        g.setGraph()
 
     print('\n###############################################\n')
 
