@@ -58,6 +58,12 @@ while True:
         Graph.setGraph()
         G = Graph.getInstance()
         G.make_edges()
+        tmp = Graph.BFS(G.vertices[0])
+        for user in list(tmp.keys()) :
+            print(user.name)
+        for val in list(tmp.values()) :
+            print(val)
+
 
 
     print('\n###############################################\n')
