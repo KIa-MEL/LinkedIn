@@ -20,8 +20,10 @@ class UserClass :
     specialties = str
     connectionId = list
     email = str
-    LinkedPeople = dict()
+    LinkedPeople = dict
 
+    def __init__(self):
+        self.LinkedPeople = dict()
     def setData1(self , username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties , connectionId):
         self.username = username
         self.password = password
@@ -33,7 +35,8 @@ class UserClass :
         self.email = email
         self.specialties = specialties
         self.connectionId = connectionId
-    def setData(self , name, dateOfBirth, universityLocation, field, workplace , email, specialties , connectionId):
+    def setData(self,id , name, dateOfBirth, universityLocation, field, workplace , email, specialties , connectionId):
+        self.id = id
         self.name = name
         self.dateOfBirth = dateOfBirth
         self.universityLocation = universityLocation
@@ -51,7 +54,7 @@ class UserClass :
 
         for item in data:
             u = UserClass()
-            u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['email'] , item['specialties'] , item['connectionId'])
+            u.setData(item['id'], item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['email'] , item['specialties'] , item['connectionId'])
             users.append(u)
         return users
 
@@ -70,7 +73,7 @@ class UserClass :
     @staticmethod
     def toUser(item):
         u = UserClass()
-        u.setData(item['name'], item['dateOfBirth'], item['universityLocation'], item['field'], item['workplace'],item['email'], item['specialties'], item['connectionId'])
+        u.setData(item['id'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'], item['workplace'],item['email'], item['specialties'], item['connectionId'])
         return u
     def saveFile(self , path):
 
@@ -119,11 +122,8 @@ class UserClass :
                 return True
         return False
 
-    def LinkUser(self , u):
-        import MyEdge
-        e = MyEdge.EdgeClass(self, u)
+    def addLink(self , u , e):
         self.LinkedPeople[u] = e
-        UserClass(u).LinkedPeople[self] = e
 
     def toString(self):
         print('Name : ' + self.name)
