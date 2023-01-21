@@ -1,14 +1,14 @@
-from MyEdge import MyEdge2
-from MyUser import MyUser2
+from MyEdge import EdgeClas
+from MyUser import UserClass
 
-user = MyUser2()
+user = UserClass()
 def showMenu():
     print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
     inp = input('>> ')
     return inp
 def login(username , password):
     try:
-        if MyUser2.findInFile(username , password , MyUser2._local_users_file_path) != None:
+        if UserClass.findInFile(username , password , UserClass._local_users_file_path) != None:
             #go to login
             print()
         else:
@@ -16,9 +16,9 @@ def login(username , password):
     except Exception:
         print("Something went wrong!")
 def signup(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties):
-    u = MyUser2()
+    u = UserClass()
     u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties)
-    u.saveFile(MyUser2._local_users_file_path)
+    u.saveFile(UserClass._local_users_file_path)
 
 print('Welcome to Unlinked Out')
 inp = showMenu()
@@ -40,14 +40,14 @@ while True:
         password = input('password >> ')
         signup(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties)
     elif inp == '3':
-        users = MyUser2.getUsers( MyUser2._main_users_file_path)
+        users = UserClass.getUsers(UserClass._main_users_file_path)
         i = int(1)
         for user in users:
             print(str(i) + '.' + user.name)
             i += 1
     elif inp == '4':
         name = input('Enter the name >> ')
-        user = MyUser2.searchByName(name , MyUser2._main_users_file_path)
+        user = UserClass.searchByName(name, UserClass._main_users_file_path)
         if user == None :
             print('The user ' + name + ' not found')
         else:

@@ -1,8 +1,8 @@
 import MyUser
 
-class MyEdge2:
-    start = MyUser.MyUser2()
-    end = MyUser.MyUser2()
+class EdgeClas:
+    start = MyUser.UserClass()
+    end = MyUser.UserClass()
     element = int()
     def __init__(self , s , e):
         self.start = s
