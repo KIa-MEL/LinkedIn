@@ -1,23 +1,23 @@
 from Tree import Tree
 from MyUser import UserClass
-
+from MyEdge import EdgeClass
 class Graph :
 
     #singleTon graph
-    unlinkedInGraph = None
+    unlinkedOutGraph = None
 
 
     def __init__(self):
         self.edges = list()
         self.vertices = list()
 
-        if Graph.unlinkedInGraph is None :
-            Graph.unlinkedInGraph = self
+        if Graph.unlinkedOutGraph is None :
+            Graph.unlinkedOutGraph = self
 
     @staticmethod
     def findUserId(username):
 
-        for user in Graph(Graph.unlinkedInGraph).vertices :
+        for user in Graph(Graph.unlinkedOutGraph).vertices :
             if user.username == username:
                 return user
 
@@ -29,7 +29,7 @@ class Graph :
 
         users = list()
 
-        for user in Graph(Graph.unlinkedInGraph).vertices :
+        for user in Graph(Graph.unlinkedOutGraph).vertices :
             if user.name == name :
                 users.append(user)
 
@@ -58,7 +58,7 @@ class Graph :
 
                 for linked in dict(user.LinkedPeople).keys():
 
-                    if list(known).index(user) == -1 :
+                    if list(known).__contains__(user)  :
                         list(known).append(user)
                         BFS_tree[linked] = five_rows
                         next_level.append(linked)
@@ -80,5 +80,33 @@ class Graph :
     @staticmethod
     def make_edges():
 
-        for user in Graph(Graph.unlinkedInGraph).vertices:
-            break
+        for user in Graph(Graph.unlinkedOutGraph).vertices:
+
+            user = UserClass(user)
+
+            for opposite_useres in UserClass(user).connectionId:
+
+                opposite_user = Graph(Graph.unlinkedOutGraph).findUserId(opposite_useres)
+                opposite_user = UserClass(opposite_user)
+
+                try:
+                    Graph.add_each_edge(user , opposite_user)
+                except Exception : print('')
+
+
+    @staticmethod
+    def add_each_edge(user , opposite_user):
+
+        if list(opposite_user.LinkedPeople.keys()).__contains__(user):
+            edge = EdgeClass(user, opposite_user)
+
+            # adding connected people
+            opposite_user.LinkedPeople[user] = edge
+            user.LinkedPeople[opposite_user] = edge
+
+            # adding the new edge
+            Graph(Graph.unlinkedOutGraph).edges.append(edge)
+
+        else:
+            raise Exception('you are already connected to this user')
+

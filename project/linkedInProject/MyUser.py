@@ -121,7 +121,7 @@ class UserClass :
 
     def LinkUser(self , u):
         import MyEdge
-        e = MyEdge.EdgeClas(self, u)
+        e = MyEdge.EdgeClass(self, u)
         self.LinkedPeople[u] = e
         UserClass(u).LinkedPeople[self] = e
 

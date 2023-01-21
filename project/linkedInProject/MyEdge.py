@@ -1,6 +1,6 @@
 import MyUser
 
-class EdgeClas:
+class EdgeClass:
     start = MyUser.UserClass()
     end = MyUser.UserClass()
     element = int()

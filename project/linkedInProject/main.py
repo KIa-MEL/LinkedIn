@@ -1,5 +1,5 @@
 from Graph import Graph
-from MyEdge import EdgeClas
+from MyEdge import EdgeClass
 from MyUser import UserClass
 
 user = UserClass()
