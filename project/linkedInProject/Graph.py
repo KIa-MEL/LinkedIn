@@ -1,6 +1,5 @@
 from Tree import Tree
-import MyUser
-
+from MyUser import UserClass
 
 class Graph :
 
@@ -69,6 +68,14 @@ class Graph :
             five_rows -= 1
 
         return BFS_tree
+
+    def setGraph(self):
+        users = UserClass.getUsers(UserClass._main_users_file_path)
+        # users.append(UserClass.getLocalUsers(UserClass._local_users_file_path))
+        # for user in users:
+        #     print(user.name)
+        self.vertices = users
+
 
     @staticmethod
     def make_edges():
