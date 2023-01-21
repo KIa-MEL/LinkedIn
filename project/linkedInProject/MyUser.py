@@ -7,7 +7,7 @@ from types import SimpleNamespace as Namespace
 
 
 class MyUser2 :
-    _main_users_file_path = '../Files/users2.json'
+    _main_users_file_path = '../Files/users1.json'
     _local_users_file_path = '../Files/users.json'
     id = str
     username = str
@@ -19,6 +19,7 @@ class MyUser2 :
     workplace = str
     specialties = str
     connectionId = list
+    email = str
     LinkedPeople = dict()
 
     # def __init__(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
@@ -31,7 +32,7 @@ class MyUser2 :
     #     self.workplace = workplace
     #     self.specialties = specialties
 
-    def setData1(self , username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
+    def setData1(self , username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties):
         self.username = username
         self.password = password
         self.name = name
@@ -39,13 +40,15 @@ class MyUser2 :
         self.universityLocation = universityLocation
         self.field = field
         self.workplace = workplace
+        self.email = email
         self.specialties = specialties
-    def setData(self , name, dateOfBirth, universityLocation, field, workplace, specialties , connectionId):
+    def setData(self , name, dateOfBirth, universityLocation, field, workplace , email, specialties , connectionId):
         self.name = name
         self.dateOfBirth = dateOfBirth
         self.universityLocation = universityLocation
         self.field = field
         self.workplace = workplace
+        self.email = email
         self.specialties = specialties
         self.connectionId = connectionId
 
@@ -56,10 +59,13 @@ class MyUser2 :
 
         for item in data:
             u = MyUser2()
-            u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['specialties'] , item['connectionId'])
+            u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['email'] , item['specialties'] , item['connectionId'])
             users.append(u)
         return users
-
+    def toUser(item):
+        u = MyUser2()
+        u.setData(item['name'], item['dateOfBirth'], item['universityLocation'], item['field'], item['workplace'],item['email'], item['specialties'], item['connectionId'])
+        return u
     def saveFile(self , path):
 
         if os.stat(path).st_size == 0: #to avoid reading empty file
@@ -84,10 +90,18 @@ class MyUser2 :
         for item in data:
             if item['username'] == username and item['password'] == password:
                 u = MyUser2()
-                u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'], item['specialties'])
+                u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'] , item['email'], item['specialties'])
                 return u
         return None
 
+    def searchByName(name , path):
+        f = open(path)
+        data = json.load(f)
+        f.close()
+        for item in data:
+            if item['name'] == name:
+                return MyUser2.toUser(item)
+        return None
     def isInFile(name , path):
         f = open(path)
         data = json.load(f)
@@ -102,3 +116,12 @@ class MyUser2 :
         e = MyEdge.MyEdge2(self, u)
         self.LinkedPeople[u] = e
         MyUser2(u).LinkedPeople[self] = e
+    def toString(self):
+        print('Name : ' + self.name)
+        print('Birthday : ' + self.dateOfBirth)
+        print('University Location : ' + self.universityLocation)
+        print('Field : ' + self.field)
+        print('Work place : ' + self.workplace)
+        print('Email : ' + self.email)
+        print('Specialties : ' , end= '')
+        print(self.specialties)
