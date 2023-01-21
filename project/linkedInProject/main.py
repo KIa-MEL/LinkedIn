@@ -1,3 +1,4 @@
+from Graph import Graph
 from MyEdge import EdgeClas
 from MyUser import UserClass
 
@@ -17,7 +18,7 @@ def login(username , password):
         print("Something went wrong!")
 def signup(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties):
     u = UserClass()
-    u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties)
+    u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties , [])
     u.saveFile(UserClass._local_users_file_path)
 
 print('Welcome to Unlinked Out')
@@ -52,6 +53,9 @@ while True:
             print('The user ' + name + ' not found')
         else:
             user.toString()
+    # elif inp == '5':
+    #     g = Graph()
+    #     g.setGraph()
 
     print('\n###############################################\n')
 
