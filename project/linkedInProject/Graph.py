@@ -71,10 +71,10 @@ class Graph :
 
     def setGraph(self):
         users = UserClass.getUsers(UserClass._main_users_file_path)
-        # users.append(UserClass.getLocalUsers(UserClass._local_users_file_path))
-        # for user in users:
-        #     print(user.name)
+        users += UserClass.getLocalUsers(UserClass._local_users_file_path)
+
         self.vertices = users
+
 
 
     @staticmethod
