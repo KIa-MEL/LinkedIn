@@ -1,5 +1,5 @@
 from Tree import Tree
-from User import User
+import MyUser
 
 
 class Graph :

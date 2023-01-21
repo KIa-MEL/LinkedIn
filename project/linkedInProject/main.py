@@ -1,14 +1,14 @@
-from Edge import Edge
-from User import User
+from MyEdge import MyEdge
+from MyUser import MyUser
 
-user = User()
+user = MyUser()
 
 def showMenu():
     print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
     inp = input('>> ')
     return inp
 def login(username , password):
-    if User.findInFile(username , password , User._local_users_file_path) != None:
+    if MyUser.findInFile(username , password , MyUser._local_users_file_path) != None:
         #go to login
         print()
     else:
@@ -16,9 +16,9 @@ def login(username , password):
         showMenu()
 
 def signup(username, password, name, dateOfBirth, universityLocation, field, workplace, specialties):
-    u = User()
+    u = MyUser()
     u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace, specialties)
-    u.saveFile(User._local_users_file_path)
+    u.saveFile(MyUser._local_users_file_path)
 
 
 print('Welcome to Unlinked Out')
