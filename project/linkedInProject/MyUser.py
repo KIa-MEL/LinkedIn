@@ -5,10 +5,8 @@ import demjson3
 
 from types import SimpleNamespace as Namespace
 
-from Edge import Edge
 
-
-class User :
+class MyUser2 :
     _main_users_file_path = '../Files/users2.json'
     _local_users_file_path = '../Files/users.json'
     id = str
@@ -57,7 +55,7 @@ class User :
         users = list()
 
         for item in data:
-            u = User()
+            u = MyUser2()
             u.setData(item['name'] , item['dateOfBirth'] , item['universityLocation'] , item['field'] , item['workplace'] , item['specialties'] , item['connectionId'])
             users.append(u)
         return users
@@ -85,7 +83,7 @@ class User :
         f.close()
         for item in data:
             if item['username'] == username and item['password'] == password:
-                u = User()
+                u = MyUser2()
                 u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'], item['specialties'])
                 return u
         return None
@@ -100,8 +98,7 @@ class User :
         return False
 
     def LinkUser(self , u):
-        e = Edge(self, u)
+        import MyEdge
+        e = MyEdge.MyEdge2(self, u)
         self.LinkedPeople[u] = e
-        User(u).LinkedPeople[self] = e
-
-#print(User.isInFile('tannaz Fitzgerald', User._main_users_file_path))
+        MyUser2(u).LinkedPeople[self] = e
