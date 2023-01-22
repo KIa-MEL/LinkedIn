@@ -3,24 +3,69 @@ from Graph import Graph
 from MyEdge import EdgeClass
 from MyUser import UserClass
 
-user = UserClass()
 def showMenu():
     print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
     inp = input('>> ')
     return inp
 def login(username , password):
     try:
-        if UserClass.findInFile(username , password , UserClass._local_users_file_path) != None:
+        user = UserClass.findInFile(username , password , UserClass._local_users_file_path)
+        if user != None:
             #go to login
-            print()
+            return user
         else:
-            print('User not found!')
+            return None
     except Exception:
-        print("Something went wrong!")
+        return None
+
+def loginByEmail(email):
+    try:
+        user = UserClass.searchByEmail(email , '****' , UserClass._main_users_file_path)
+        if user != None:
+            #go to login
+            return user
+        else:
+            return None
+    except Exception:
+        return None
+
+
+
+
+
+
 def signup(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties):
     u = UserClass()
     u.setData1(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties , [])
     u.saveFile(UserClass._local_users_file_path)
+
+def loginMenu(user = UserClass):
+
+    print('Name : ' + user.name)
+    print('specialties : ' , end='')
+    for sp in user.specialties:
+        print(sp , end=' ')
+    print('Recommended users : ' , end= ' , ')
+    # BFSTraverse = Graph.BFS(user)
+    # matrix = ClusteringMatrix(len(tmp))
+    # m.setScore(user, tmp)
+    # print()
+
+
+
+
+
+
+
+
+
+
+#################################
+Graph.setGraph()
+G = Graph.getInstance()
+G.make_edges()
+
+
 
 print('Welcome to Unlinked Out')
 inp = showMenu()
@@ -29,7 +74,13 @@ while True:
     if inp == '1':
         username = input('Enter Username >> ')
         password = input('Enter Password >> ')
-        login(username , password)
+        user = login(username , password)
+        user2 = loginByEmail(username)
+        if user is not None:
+            loginMenu(user)
+        elif user2 is not None:
+            loginMenu(user2)
+
     elif inp == '2':
         name = input('Name >> ')
         email = input('email >> ')
