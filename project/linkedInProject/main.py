@@ -9,7 +9,7 @@ import numpy as np
 
 
 def showMenu():
-    print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
+    print('1.LogIn\n2.SignUp\n3.Show all users\n4.Search')
     inp = input('>> ')
     return inp
 def login(username , password):
@@ -114,36 +114,26 @@ while True:
         password = input('password >> ')
         signup(username, password, name, dateOfBirth, universityLocation, field, workplace , email, specialties)
     elif inp == '3':
-        users = UserClass.getUsers(UserClass._main_users_file_path)
+        g = Graph.getInstance()
         i = int(1)
-        for user in users:
-            print(str(i) + '.' + user.name)
-            i += 1
+        for user in g.vertices:
+            if isinstance(user, UserClass):
+                print(str(i) + '. ######################################################################')
+                user.toString()
+                i += 1
     elif inp == '4':
         name = input('Enter the name >> ')
-        user = UserClass.searchByName(name, UserClass._main_users_file_path)
-        if user == None :
+        users = Graph.findByName(name)
+        if users is None:
             print('The user ' + name + ' not found')
         else:
-            user.toString()
-    elif inp == '5':
-        q = dict
-        Graph.setGraph()
-        G = Graph.getInstance()
-        G.make_edges()
-        tmp = Graph.BFS(G.vertices[3])
-        for user in list(tmp.keys()) :
-            print(user.name)
-        for val in list(tmp.values()) :
-            print(val)
-        print(len(tmp))
-        m = ClusteringMatrix(len(tmp))
-        x = m.setScore(G.vertices[3] , tmp)
-        m.showPlt()
-        print(m.matrix)
-
-
-        print()
+            i = 1
+            for user in users:
+                if isinstance(user, UserClass):
+                    print(str(i) + '. ######################################################################')
+                    user.toString()
+                    i += 1
+    #elif inp == '5':
 
 
 
