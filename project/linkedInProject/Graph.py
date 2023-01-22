@@ -123,3 +123,24 @@ class Graph :
 
         else:
             raise Exception('you are already connected to this user')
+
+
+    def follow(self , user):
+
+        name = input('Enter the user id you want to connect to >> ')
+        opposite_user = Graph.getInstance().findUserById(name)
+
+        if opposite_user is None :
+            raise Exception('there is no person with this id ')
+
+        if isinstance(opposite_user , UserClass) :
+            if not list(opposite_user.LinkedPeople.keys()).__contains__(user):
+
+                edge = EdgeClass(user , opposite_user)
+
+                #adding connected people
+                opposite_user.LinkedPeople[user] = edge
+                user.LinkedPeople[opposite_user] = edge
+
+                #adding the new edge
+                Graph.getInstance().edges.append(edge)
