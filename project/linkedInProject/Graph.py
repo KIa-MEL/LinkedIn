@@ -145,3 +145,7 @@ class Graph :
 
                 #adding the new edge
                 Graph.getInstance().edges.append(edge)
+                print('added successfully !')
+
+            else:
+                print('you are already connected to this person')
