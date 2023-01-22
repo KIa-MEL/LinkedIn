@@ -99,9 +99,28 @@ class UserClass :
         for item in data:
             if item['username'] == username and item['password'] == password:
                 u = UserClass()
-                u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'] , item['email'], item['specialties'])
+                u.setData1(item['username'], item['password'],item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],item['workplace'] , item['email'], item['specialties'] , item['connectionId'])
                 return u
         return None
+
+
+
+
+    @staticmethod
+    def searchByEmail(email , password , path):
+        f = open(path)
+        data = json.load(f)
+        f.close()
+        for item in data:
+            if item['email'] == email and password == '****':
+                u = UserClass()
+                u.setData(item['id'], item['name'], item['dateOfBirth'], item['universityLocation'], item['field'],
+                          item['workplace'], item['email'], item['specialties'], item['connectionId'])
+                return u
+        return None
+
+
+
     @staticmethod
     def searchByName(name , path):
         f = open(path)

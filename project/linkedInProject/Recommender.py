@@ -36,7 +36,7 @@ class ClusteringRecommender:
         recommendeing_users = list()
 
         counter = int (0)
-        user_keys = self.bfs_tree.keys()
+        user_keys = list(self.bfs_tree.keys())
         for user_cluster in list(all_clusters):
 
             if len(recommendeing_users) == 20:
