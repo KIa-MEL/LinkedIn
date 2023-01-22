@@ -1,16 +1,18 @@
 import numpy as np
-
+from matplotlib import pyplot as plt
 from MyUser import UserClass
+from sklearn.cluster import KMeans
 
 
 class ClusteringMatrix:
     matrix = np.array
-
+    kmeans = KMeans
     # [level , specialtiesScore , fieldScore , uniScore , workScore ]
 
     def __init__(self , row):
         a_shape = (row, 5)
         self.matrix = np.zeros(a_shape)
+
 
     def setScore(self , startingPoint = UserClass , bfsTree = dict):
 
@@ -59,3 +61,14 @@ class ClusteringMatrix:
 
             self.matrix[i] = [bfsTree[user] , specialtiesScore , fieldScore , uniScore , workScore ]
             i+=1
+        self.setKMeans()
+
+
+
+
+    def setKMeans(self):
+        x = np.array(self.matrix)
+        self.kmeans = KMeans(n_clusters=6, random_state=0, n_init="auto").fit(x)
+    def showPlt(self):
+        plt.scatter(self.matrix[:,1] + self.matrix[:,2] + self.matrix[:,0] , self.matrix[:,3] + self.matrix[:,4] + self.matrix[:,4] , c = self.kmeans.labels_)
+        plt.show()
