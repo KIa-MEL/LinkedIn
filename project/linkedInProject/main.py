@@ -67,6 +67,7 @@ while True:
         print(len(tmp))
         m = ClusteringMatrix(len(tmp))
         x = m.setScore(G.vertices[3] , tmp)
+        m.showPlt()
         print(m.matrix)
         print()
 
