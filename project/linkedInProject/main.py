@@ -1,7 +1,12 @@
+import math
+
 from AI_settings import ClusteringMatrix
 from Graph import Graph
 from MyEdge import EdgeClass
 from MyUser import UserClass
+from Recommender import ClusteringRecommender
+import numpy as np
+
 
 def showMenu():
     print('1.LogIn\n2.SignUp\n3.Show All users\n4.Search')
@@ -44,12 +49,28 @@ def loginMenu(user = UserClass):
     print('Name : ' + user.name)
     print('specialties : ' , end='')
     for sp in user.specialties:
-        print(sp , end=' ')
-    print('Recommended users : ' , end= ' , ')
-    # BFSTraverse = Graph.BFS(user)
-    # matrix = ClusteringMatrix(len(tmp))
-    # m.setScore(user, tmp)
-    # print()
+        print(sp , end=', ')
+    print('\nRecommended users : ')
+    userInGraph = Graph.findUserById(user.id)
+    BFSTraverse = Graph.BFS(userInGraph)
+    matrix = ClusteringMatrix(len(BFSTraverse))
+    matrix.setScore(userInGraph, BFSTraverse)
+
+    recommender = ClusteringRecommender(matrix , BFSTraverse)
+    recommender.setKMeans()
+    recommender.showPlt()
+
+
+    tmp = list()
+    tmp.append([2, sum(range(len(user.specialties) , 1 , -1))  , 1 ,1 , 1])
+    recommendedList = recommender.recommend(tmp)
+
+    i = int(1)
+    for item in recommendedList:
+        if isinstance(item , UserClass) :
+            print(str(i) + '. ######################################################################')
+            item.toString()
+            i += 1
 
 
 
@@ -126,6 +147,6 @@ while True:
 
 
 
-    print('\n###############################################\n')
+    print('\n*******************************************')
 
     inp = showMenu()
