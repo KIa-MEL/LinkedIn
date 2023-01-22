@@ -5,6 +5,9 @@ from MyUser import UserClass
 
 class ClusteringMatrix:
     matrix = np.array
+
+    # [level , specialtiesScore , fieldScore , uniScore , workScore ]
+
     def __init__(self , row):
         a_shape = (row, 5)
         matrix = np.zeros(a_shape)
@@ -16,6 +19,7 @@ class ClusteringMatrix:
         uniScore = int(0)
         workScore = int(0)
 
+        i = int(0)
         for user in list(bfsTree.keys()) :
             specialtiesWeight = len(startingPoint.specialties)
             if isinstance(user , UserClass):
@@ -46,3 +50,7 @@ class ClusteringMatrix:
                         workScore += 1
                 except Exception:
                     workScore = 0
+
+
+            self.matrix[i] = [bfsTree.get(user) , specialtiesScore , fieldScore , uniScore , workScore ]
+            i+=1
