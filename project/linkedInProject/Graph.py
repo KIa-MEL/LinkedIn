@@ -75,6 +75,7 @@ class Graph :
                         BFS_tree[linked] = five_rows
                         next_level.append(linked)
 
+
             level = next_level
             five_rows += 1
 
@@ -85,6 +86,8 @@ class Graph :
         users += UserClass.getLocalUsers(UserClass._local_users_file_path)
 
         Graph.getInstance().vertices = users
+
+
 
     def make_edges(self):
 
