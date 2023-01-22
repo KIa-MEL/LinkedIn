@@ -43,9 +43,10 @@ class Graph :
 
         users = list()
 
-        for user in Graph(Graph._instance).vertices :
-            if user.name == name :
-                users.append(user)
+        for user in Graph._instance.vertices :
+            if isinstance(user , UserClass):
+                if str(user.name).__contains__(name):
+                    users.append(user)
 
         if len(users) == 0:
             return None
@@ -144,3 +145,7 @@ class Graph :
 
                 #adding the new edge
                 Graph.getInstance().edges.append(edge)
+                print('added successfully !')
+
+            else:
+                print('you are already connected to this person')
