@@ -1,3 +1,4 @@
+from AI_settings import ClusteringMatrix
 from Graph import Graph
 from MyEdge import EdgeClass
 from MyUser import UserClass
@@ -58,12 +59,16 @@ while True:
         Graph.setGraph()
         G = Graph.getInstance()
         G.make_edges()
-        tmp = Graph.BFS(G.vertices[0])
+        tmp = Graph.BFS(G.vertices[3])
         for user in list(tmp.keys()) :
             print(user.name)
         for val in list(tmp.values()) :
             print(val)
-
+        print(len(tmp))
+        m = ClusteringMatrix(len(tmp))
+        x = m.setScore(G.vertices[3] , tmp)
+        print(m.matrix)
+        print()
 
 
 

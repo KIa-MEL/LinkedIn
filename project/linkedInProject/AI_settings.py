@@ -10,7 +10,7 @@ class ClusteringMatrix:
 
     def __init__(self , row):
         a_shape = (row, 5)
-        matrix = np.zeros(a_shape)
+        self.matrix = np.zeros(a_shape)
 
     def setScore(self , startingPoint = UserClass , bfsTree = dict):
 
@@ -23,6 +23,11 @@ class ClusteringMatrix:
         for user in list(bfsTree.keys()) :
             specialtiesWeight = len(startingPoint.specialties)
             if isinstance(user , UserClass):
+
+                if bfsTree[user] == 1:
+                    continue
+
+
                 # specialties :
                 try:
                     for ss in startingPoint.specialties: # startingPoint specialties
@@ -52,5 +57,5 @@ class ClusteringMatrix:
                     workScore = 0
 
 
-            self.matrix[i] = [bfsTree.get(user) , specialtiesScore , fieldScore , uniScore , workScore ]
+            self.matrix[i] = [bfsTree[user] , specialtiesScore , fieldScore , uniScore , workScore ]
             i+=1

@@ -64,7 +64,7 @@ class Graph :
         five_rows = 1
         while len(level) != 0 :
 
-            if five_rows == 6 :
+            if five_rows == 7 :
                 break
 
             next_level = list()
@@ -72,7 +72,8 @@ class Graph :
                 for linked in list(user.LinkedPeople.keys()):
                     if not known.__contains__(linked) :
                         known.append(linked)
-                        BFS_tree[linked] = five_rows
+                        if five_rows != 1:
+                            BFS_tree[linked] = five_rows
                         next_level.append(linked)
 
 
@@ -122,4 +123,3 @@ class Graph :
 
         else:
             raise Exception('you are already connected to this user')
-
