@@ -53,33 +53,30 @@ class Graph :
         return users
 
     @staticmethod
-    def BFS (startingPoint , known):
-
+    def BFS (startingPoint = UserClass):
+        known = list()
         BFS_tree = dict()
         level = list()
 
-        list(known).append(startingPoint)
+        known.append(startingPoint)
         level.append(startingPoint)
 
-        five_rows = 5
+        five_rows = 1
         while len(level) != 0 :
 
-            if five_rows == 0 :
+            if five_rows == 6 :
                 break
 
             next_level = list()
             for user in level:
-
-                for linked in dict(user.LinkedPeople).keys():
-
-                    if list(known).__contains__(user)  :
-                        list(known).append(user)
+                for linked in list(user.LinkedPeople.keys()):
+                    if not known.__contains__(linked) :
+                        known.append(linked)
                         BFS_tree[linked] = five_rows
                         next_level.append(linked)
 
-
             level = next_level
-            five_rows -= 1
+            five_rows += 1
 
         return BFS_tree
     @staticmethod
@@ -88,8 +85,6 @@ class Graph :
         users += UserClass.getLocalUsers(UserClass._local_users_file_path)
 
         Graph.getInstance().vertices = users
-
-
 
     def make_edges(self):
 
@@ -101,9 +96,7 @@ class Graph :
 
                 try:
                     self.add_each_edge(user , opposite_user)
-                except Exception : print('kjkj')
-
-
+                except Exception : {}
     def getEdge(self , v = UserClass , u = UserClass):
         try:
             if v.LinkedPeople.keys().__contains__(u):

@@ -1,6 +1,4 @@
 from TreeNode import TreeNode
-
-
 class Tree :
 
     def __init__(self):
