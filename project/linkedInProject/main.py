@@ -69,6 +69,8 @@ while True:
         x = m.setScore(G.vertices[3] , tmp)
         m.showPlt()
         print(m.matrix)
+
+
         print()
 
 
